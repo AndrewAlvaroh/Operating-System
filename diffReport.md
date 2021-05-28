@@ -1,6 +1,6 @@
-<h1>Code Modification</h1>
+<h1>Code Modification Project 02</h1>
 
-<h2>defs.h</h2>
+<h3>defs.h</h3>
 
 ``` diff
 diff --git a/defs.h b/defs.h
@@ -19,24 +19,7 @@ index f85557d..7bb91a2 100644
  void            printList(int);
 ```
 
-<h2>Makefile</h2>
-
-``` diff
-diff --git a/Makefile b/Makefile
-index 6d6fa03..0cac351 100644
---- a/Makefile
-+++ b/Makefile
-@@ -1,6 +1,6 @@
- # Set flag to correct CS333 project number: 1, 2, ...
- # 0 == original xv6-pdx distribution functionality
--CS333_PROJECT ?= 1
-+CS333_PROJECT ?= 2
- PRINT_SYSCALLS ?= 0
- CS333_CFLAGS ?= -DPDX_XV6
- ifeq ($(CS333_CFLAGS), -DPDX_XV6)
-```
-
-<h2>pdx.h</h2>
+<h3>pdx.h</h3>
 
 ```diff
 diff --git a/pdx.h b/pdx.h
@@ -61,7 +44,48 @@ index a1b55ca..1fbfa02 100644
  #endif // CS333_P2
  ```
 
-<h2>proc.c</h2>
+
+<h3>proc.h</h3>
+
+```diff
+diff --git a/proc.h b/proc.h
+index 4b5386b..95a3a35 100644
+--- a/proc.h
++++ b/proc.h
+@@ -36,6 +36,12 @@ enum procstate { UNUSED, EMBRYO, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
+
+ // Per-process state
+ struct proc {
++  #ifdef CS333_P2 //Tambahan Tugas 2
++    uint uid;
++    uint gid;
++    uint cpu_ticks_total;
++    uint cpu_ticks_in;
++  #endif                         //CS333_P2
+   uint sz;                     // Size of process memory (bytes)
+   pde_t* pgdir;                // Page table
+   char *kstack;                // Bottom of kernel stack for this process
+```
+
+
+<h3>Makefile</h3>
+
+``` diff
+diff --git a/Makefile b/Makefile
+index 6d6fa03..0cac351 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,6 +1,6 @@
+ # Set flag to correct CS333 project number: 1, 2, ...
+ # 0 == original xv6-pdx distribution functionality
+-CS333_PROJECT ?= 1
++CS333_PROJECT ?= 2
+ PRINT_SYSCALLS ?= 0
+ CS333_CFLAGS ?= -DPDX_XV6
+ ifeq ($(CS333_CFLAGS), -DPDX_XV6)
+```
+
+<h3>proc.c</h3>
 
  ``` diff
 diff --git a/proc.c b/proc.c
@@ -221,29 +245,7 @@ index 37fdd7f..a32acef 100644
  // list management helper functions
 ```
 
-<h2>proc.h</h2>
-
-```diff
-diff --git a/proc.h b/proc.h
-index 4b5386b..95a3a35 100644
---- a/proc.h
-+++ b/proc.h
-@@ -36,6 +36,12 @@ enum procstate { UNUSED, EMBRYO, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
-
- // Per-process state
- struct proc {
-+  #ifdef CS333_P2 //Tambahan Tugas 2
-+    uint uid;
-+    uint gid;
-+    uint cpu_ticks_total;
-+    uint cpu_ticks_in;
-+  #endif                         //CS333_P2
-   uint sz;                     // Size of process memory (bytes)
-   pde_t* pgdir;                // Page table
-   char *kstack;                // Bottom of kernel stack for this process
-```
-
-<h2>runoff.list</h2>
+<h3>runoff.list</h3>
 
 ```diff
 diff --git a/runoff.list b/runoff.list
@@ -266,7 +268,7 @@ index 81930d9..5e9f7e6 100644
 \ No newline at end of file
 ```
 
-<h2>syscall.c</h2>
+<h3>syscall.c</h3>
 
 ```diff
 diff --git a/syscall.c b/syscall.c
@@ -321,7 +323,7 @@ index 07e83a7..11ac94a 100644
  #endif // PRINT_SYSCALLS
 ```
 
-<h2>syscall.h</h2>
+<h3>syscall.h</h3>
 
 ```diff
 diff --git a/syscall.h b/syscall.h
@@ -341,7 +343,7 @@ index 57fb797..99fd107 100644
 \ No newline at end of file
 ```
 
-<h2>sysproc.c</h2>
+<h3>sysproc.c</h3>
 
 ```diff
 diff --git a/sysproc.c b/sysproc.c
@@ -441,7 +443,7 @@ index 997ec25..fc8b6e9 100644
    uint pid;
 ```
 
-<h2>user.h</h2>
+<h3>user.h</h3>
 
 ```diff
 diff --git a/user.h b/user.h
@@ -468,7 +470,7 @@ index 094e533..f7d4c9a 100644
 +#endif // CS333_P2
 ```
 
-<h2>usys.S</h2>
+<h3>usys.S</h3>
 
 ```diff
 diff --git a/usys.S b/usys.S
@@ -490,7 +492,8 @@ index 84bd80b..6ee47b8 100644
 <h2>Some File</h2>
 Beberapa file yang ditambahkan 
 <ul>
- <li>ps.c</li>
- <li>testtest2.c</li>
  <li>testsetuid.c</li>
+ <li>testtest2.c</li>
+  <li>ps.c</li>
+
 </ul>
